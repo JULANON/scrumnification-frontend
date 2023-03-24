@@ -2,21 +2,42 @@
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import router from "@/router";
-</script>
+import { useShop } from "@/stores/shop";
+let role = ref("");
 
+let notification = useShop;
+
+onMounted(() => {
+    role = localStorage.getItem('role');
+    notification.dispatch('getNotification');
+})
+
+</script>
+<!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"></link> -->
+<!-- <script src = "http://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
 <template>
+    
     <div class="box">
         <div class="titel" >Purchase History</div>
         <div class="box-table">
             <table class="row">
                 <tr class="row header">
                     <th class="col-2">No.</th>
-                    <th class="col-3">Cluster</th>
+                    <th class="col-2">Cluster</th>
                     <th class="col-3">Item name</th>
                     <th class="col-2">Price</th>
-                    <th class="col-2">Date</th>
+                    <th class="col-3">Date</th>
                 </tr>
-                <tr class="row content">
+                <tr class="row content" v-for="(item, index) in notification.state.notificationList" :key="item._id">
+                    <!-- @click="save()" -->
+                    <td class="col-2" >{{ index+1 }}</td>
+                    <td class="col-2">{{ item.cluster }}</td>
+                    <td class="col-3">{{ item.item_name}}</td>
+                    <td class="col-2">{{ item.point }}</td>
+                    <td class="col-3">{{ item.date }}</td>
+                    <!-- <td  class="btn-grad col-2" type="button"><i class="bi bi-cart3 icon-shop" @click="buyItem(item._id)"></i>Buy</td> -->
+                </tr>
+                <!-- <tr class="row content">
                     <td class="col-2">1</td>
                     <td class="col-3">Cluster 8</td>
                     <td class="col-3" style="text-align:left;">Music</td>
@@ -29,7 +50,7 @@ import router from "@/router";
                     <td class="col-3" style="text-align:left;">Forcing different cluster</td>
                     <td class="col-2">300</td>
                     <td class="col-2">11/04/2023</td>
-                </tr>
+                </tr> -->
                 
             </table>
         </div>

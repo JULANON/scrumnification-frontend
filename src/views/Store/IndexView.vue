@@ -12,6 +12,26 @@ onMounted(() => {
     shopStore.dispatch('getShops');
 })
 
+let shop_id = ref("");
+let clusters_id = ref("");
+
+
+function save(){
+    console.log(role);
+    if(role == "admin"){
+        router.push('/admin/store/add');
+    }else{
+        router.push('/store/add');
+    }
+}
+function buyItem(o_id: string){
+    
+    useShop.state.shop_id = o_id;
+    useShop.state.clusters_id = "64189a3d9979072da0be5249";
+    // shopStore.dispatch('buyItem', o_id);
+    console.log(o_id);
+    useShop.dispatch("addNotification");
+}
 </script>
 
 <template>
@@ -22,16 +42,17 @@ onMounted(() => {
     <div class="box-table">
         <table class="row">
             <tr class="row" style="background-color: #0052D4; color: rgb(255, 255, 255); " >
-                <th class="col-3">#</th>
+                <th class="col-3">No.</th>
                 <th class="col-4">Name</th>
                 <th class="col-3">Price</th>
                 <th class="col-2">Action</th>
             </tr>
             <tr class="row" v-for="(item, index) in shopStore.state.shopList" :key="item._id">
-                <td class="col-3">{{ index+1 }}</td>
+                <!-- @click="save()" -->
+                <td class="col-3" >{{ index+1 }}</td>
                 <td class="col-4">{{ item.name }}</td>
                 <td class="col-3">{{ item.point }}</td>
-                <td  class="btn-grad col-2" type="button"><i class="bi bi-cart3 icon-shop"></i>Buy</td>
+                <td  class="btn-grad col-2" type="button"><i class="bi bi-cart3 icon-shop" @click="buyItem(item._id)"></i>Buy</td>
             </tr>
         </table>
     </div>
