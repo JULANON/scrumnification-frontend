@@ -58,44 +58,34 @@ function login(){
 
 <template>
 
-<div class="d-flex justify-content-between">
-
-    <div class="p-2 flex-fill bd-highlight logo-index">
+<div>
+  <div class="split left">
+  <div class="centered">
       <img id="icon" src="../assets/icon/Pink_Elegant_Lash_Makeup_Brow_artist_Beauty_Logo__1_-removebg-preview.png">
-    </div>
+  </div>
+</div>
 
-  <div class="p-2 flex-fill bd-highlight center">
-    <div class="login-page">
-      <div class="form">
-        <button @click="login()">login</button>
-        try this!
-        <br>
-        username: admin, password: root
-        username:coachc0, password: root
-        username: leaderc0, password: root
-        <form class="register-form">
-          <input type="text" placeholder="name"/>
-          <input type="password" placeholder="password"/>
-          <input type="text" placeholder="email address"/>
-
-          <button>create</button>
-        </form>
+<div class="split2 right">
+  <div class="centered2">
+    <div>
         <form class="login-form">
-          <input type="text" placeholder="username" v-model="username"/>
-          <input type="password" placeholder="password" v-model="password"/>
-
+          <div class="fontColor" style="font-size: 600%; text-align: center;">Login</div>
+          <div style="font-weight: bold; margin-top: 10%;">Username:</div>
+          <input type="text" class="boxInputText" placeholder="username" v-model="username"/><br>
+          <div style="font-weight: bold; margin-top: 20%;">Password:</div>
+          <input type="password" class="boxInputText" placeholder="password" v-model="password"/><br>
           <router-link to="/home">
-            <button @click="loginAdmin()">login Admin</button>
-            <button @click="loginLeader()">login Leader</button>
-            <button @click="loginCoach()">login Coach</button>
+              <!-- <button @click="loginAdmin()">login Admin</button>
+              <button @click="loginLeader()">login Leader</button>
+              <button @click="loginCoach()">login Coach</button> -->
+            <button class="buttomColorLogin" style="margin-top: 20%;" @click="login()"><div style="color: white;">login</div></button>
           </router-link>
-          <!-- <p class="message">ขี้เกียจ login? <router-link to="/home" >Click me</router-link></p> -->
-
+              <!-- <p class="message">ขี้เกียจ login? <router-link to="/home" >Click me</router-link></p> -->
         </form>
-      </div>
-    </div>
     </div>
   </div>
+</div>
+</div>
 
 
 
@@ -126,6 +116,56 @@ function login(){
 
 <style scoped>
 
+.split {
+  height: 100%;
+  width: 45%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.split2 {
+  height: 100%;
+  width: 55%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background: rgb(62,128,233);
+  background: linear-gradient(45deg, rgba(62,128,233,1) 0%, rgba(156,236,251,1) 100%);
+}
+
+.right {
+  right: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.centered {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.centered2 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
 .center{
   display: block;
   margin-left: auto;
@@ -134,9 +174,10 @@ function login(){
 
 #icon{
   display: block;
-  margin-left: auto;
+  width: 140%;
+  margin-left: -20%;
   margin-right: auto;
-  margin-top: 10%;
+  margin-top: 80%;
   /* width: 50%; */
 }
 .logo-index{
@@ -152,6 +193,29 @@ top: 0px;
 background: linear-gradient(201.34deg, rgba(156, 236, 251, 0.712) 0%, rgba(0, 82, 212, 0.68) 100%);
 backdrop-filter: blur(150px);
 /* Note: backdrop-filter has minimal browser support */
+}
+
+.fontColor{
+  font-size: 72px;
+  background: -webkit-linear-gradient(rgba(156,236,251,1) 0%,rgb(0,82,212) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.boxInputText{
+  border-radius: 10px; 
+  width: 100%;
+  border-color: #5151F2;
+}
+
+.buttomColorLogin{
+  font-size: 30px;
+  width: 100%;
+  border-radius: 10px;
+  border-color: rgb(145,234,228);
+  border-color: linear-gradient(90deg, rgba(145,234,228,1) 0%, rgba(101,199,247,1) 50%, rgba(0,82,212,1) 100%);
+  background: rgb(145,234,228);
+  background: linear-gradient(90deg, rgba(145,234,228,1) 0%, rgba(101,199,247,1) 50%, rgba(0,82,212,1) 100%);
 }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
